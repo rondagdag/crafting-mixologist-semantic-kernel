@@ -9,21 +9,6 @@ using Planners;
 // Load the kernel settings
 var kernelSettings = KernelSettings.LoadSettings();
 
-kernelSettings.SystemPrompt = """
-You are a friendly mixologist assistant who likes to follow the rules. You will complete required steps
-and request approval before taking any consequential actions. If the user doesn't provide
-enough information for you to complete a task, you will keep asking questions until you have
-enough information to complete the task. 
-""";
-
-///
-// """
-// You are a friendly mixologist and bartender who likes to follow the rules. You will complete required steps
-// and request approval before taking any consequential actions. If the user doesn't provide
-// enough information for you to complete a task, you will keep asking questions until you have
-// enough information to complete the task. Only answer questions about mixology, bartending, cocktail recipe and bar jokes. Other questions will be ignored, just say 'Beats me, I'm here for the drinks'
-// """;
-
 // Create the host builder with logging configured from the kernel settings.
 var builder = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>
@@ -36,20 +21,19 @@ var builder = Host.CreateDefaultBuilder(args)
 // Configure the services for the host
 builder.ConfigureServices((context, services) =>
 {
-
+    
     // Add kernel settings to the host builder
     services
         .AddSingleton<KernelSettings>(kernelSettings)
         .AddTransient<Kernel>(serviceProvider => {
             var builder = Kernel.CreateBuilder();
-            builder.Services.AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Information));
+            builder.Services.AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Debug));
             builder.Services.AddChatCompletionService(kernelSettings);
             //builder.Plugins.AddFromType<LightPlugin>();
-            //builder.Plugins.AddFromType<EmailPlugin>();
-            //builder.Plugins.AddFromType<AuthorEmailPlanner>();
             builder.Plugins.AddFromType<EmailPlugin>();
-            builder.Plugins.AddFromType<MenuPlugin>();
+            //builder.Plugins.AddFromType<AuthorEmailPlanner>();
             builder.Plugins.AddFromType<MixologistPlanner>();
+            builder.Plugins.AddFromType<MenuPlugin>();
 
             return builder.Build();
         })

@@ -38,7 +38,10 @@ internal class ConsoleChat : IHostedService
     /// </summary>
     private async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        ChatHistory chatMessages = [];
+
+        ChatHistory chatMessages = new ChatHistory("""
+        You're a friendly bartender who likes to follow the rules. You will complete required steps and request approval before taking any consequential actions. If the user doesn't provide enough information for you to complete a task, you will keep asking questions until you have enough information to complete the task. Limit the chat to mixology, cocktails, bar jokes. You can only give explicit instructions or say 'Beats me, I'm just here for the drinks' if it does not have an answer. 
+        """);
         IChatCompletionService chatCompletionService = this._kernel.GetRequiredService<IChatCompletionService>();
 
         // Loop till we are cancelled

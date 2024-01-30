@@ -6,10 +6,10 @@ namespace Plugins;
 internal class EmailPlugin
 {
     [KernelFunction]
-    [Description("Sends an email to a recipient. ")]
+    [Description("Sends an email to a recipient.")]
     public async Task SendEmailAsync(
         Kernel kernel,
-        [Description("Semicolon delimitated list of emails of the recipients. Ask only send if recipient email addresses exist. If not, return an error message.")] string recipientEmails,
+        [Description("Semicolon delimitated list of emails of the recipients.")] string recipientEmails,
         string subject,
         string body
     )
