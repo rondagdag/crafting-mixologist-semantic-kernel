@@ -31,7 +31,7 @@ builder.ConfigureServices((context, services) =>
             builder.Services.AddChatCompletionService(kernelSettings);
             //builder.Plugins.AddFromType<LightPlugin>();
             builder.Plugins.AddFromType<EmailPlugin>();
-            //builder.Plugins.AddFromType<AuthorEmailPlanner>();
+            builder.Plugins.AddFromType<AuthorEmailPlanner>();
             builder.Plugins.AddFromType<MixologistPlanner>();
             builder.Plugins.AddFromType<MenuPlugin>();
 

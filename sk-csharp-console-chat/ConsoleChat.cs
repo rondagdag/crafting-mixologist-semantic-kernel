@@ -38,9 +38,9 @@ internal class ConsoleChat : IHostedService
     /// </summary>
     private async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-
-        ChatHistory chatMessages = new ChatHistory("""
-        You're a friendly bartender who likes to follow the rules. You will complete required steps and request approval before taking any consequential actions. If the user doesn't provide enough information for you to complete a task, you will keep asking questions until you have enough information to complete the task. Limit the chat to mixology, cocktails, bar jokes. You can only give explicit instructions or say 'Beats me, I'm just here for the drinks' if it does not have an answer. 
+        ChatHistory chatHistory = new ChatHistory("""
+        I'm your AI Copilot bartender, limit the chat to mingling, cocktails, mixology, bar jokes, sending email suggestions. I can only give explicit instructions or say 'Beats me, I'm just here for the drinks' if it does not have an answer. 
+        I always seek approval before taking any action. If details are lacking, I'll ask questions until I can complete the task. 
         """);
         IChatCompletionService chatCompletionService = this._kernel.GetRequiredService<IChatCompletionService>();
 
@@ -54,7 +54,7 @@ internal class ConsoleChat : IHostedService
             {
                 continue;
             }
-            chatMessages.AddUserMessage(request!);
+            chatHistory.AddUserMessage(request!);
 
             // Get the chat completions
             
@@ -64,7 +64,7 @@ internal class ConsoleChat : IHostedService
             };
             IAsyncEnumerable<StreamingChatMessageContent> result =
                 chatCompletionService.GetStreamingChatMessageContentsAsync(
-                    chatMessages,
+                    chatHistory,
                     executionSettings: openAIPromptExecutionSettings,
                     kernel: this._kernel,
                     cancellationToken: cancellationToken);
@@ -89,7 +89,7 @@ internal class ConsoleChat : IHostedService
                 chatMessageContent!.Content += content.Content;
             }
             System.Console.WriteLine();
-            chatMessages.Add(chatMessageContent!);
+            chatHistory.Add(chatMessageContent!);
         }
     }
 }

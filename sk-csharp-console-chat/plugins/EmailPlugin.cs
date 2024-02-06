@@ -9,7 +9,7 @@ internal class EmailPlugin
     [Description("Sends an email to a recipient.")]
     public async Task SendEmailAsync(
         Kernel kernel,
-        [Description("Semicolon delimitated list of emails of the recipients.")] string recipientEmails,
+        [Description("Semicolon delimitated list of emails of the recipients. Ask for valid email address, do not generate")] string recipientEmails,
         string subject,
         string body
     )
@@ -20,6 +20,6 @@ internal class EmailPlugin
         Console.WriteLine("Recipient Emails: " + recipientEmails);
         Console.WriteLine("Subject: " + subject);
         Console.WriteLine("Body: " + body);
-        Console.WriteLine("Email sent!");
+        Console.WriteLine("....Email sent!....");
     }
 }

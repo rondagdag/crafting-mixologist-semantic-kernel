@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Drink Maestro API
+  description: An API to search for beverage recipes and get detailed information about drinks and ingredients.
+  version: "v1"
+servers:
+  - url: 'https://api.drinkmaestro.space/'
+paths:
+  /searchDrink:
+    get:
+      operationId: searchDrink
+      summary: Search for a cocktail by name
+      parameters:
+        - name: drink_name
+          in: query
+          description: Name of the cocktail to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A cocktail object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cocktail'
+  /listCocktails:
+    get:
+      operationId: listCocktails
+      summary: List all cocktails by first letter
+      parameters:
+        - name: first_letter
+          in: query
+          description: First letter of the cocktail names to list
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An array of cocktail objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cocktail'
+  /searchIngredient:
+    get:
+      operationId: searchIngredient
+      summary: Search for an ingredient by name
+      parameters:
+        - name: ingredient_name
+          in: query
+          description: Name of the ingredient to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An ingredient object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+  /randomCocktail:
+    get:
+      operationId: randomCocktail
+      summary: Get a random cocktail
+      responses:
+        '200':
+          description: A cocktail object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cocktail'
+  /nonAlcoholicList:
+    get:
+      operationId: nonAlcoholicList
+      summary: Get a list of non-alcoholic drinks
+      responses:
+        '200':
+          description: An array of cocktail objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cocktail'
+components:
+  schemas:
+    Cocktail:
+      type: object
+      properties:
+        dateModified:
+          type: string
+          format: date-time
+          example: '2015-09-06 16:48:58'
+        idDrink:
+          type: string
+          example: '14978'
+        strAlcoholic:
+          type: string
+          example: 'Alcoholic'
+        strCategory:
+          type: string
+          example: 'Punch / Party Drink'
+        strCreativeCommonsConfirmed:
+          type: string
+          example: 'No'
+        strDrink:
+          type: string
+          example: 'Rum Punch'
+        strDrinkAlternate:
+          type: string
+          nullable: true
+        strDrinkThumb:
+          type: string
+          format: uri
+          example: 'https://www.thecocktaildb.com/images/media/drink/wyrsxu1441554538.jpg'
+        strGlass:
+          type: string
+          example: 'Punch bowl'
+        strIBA:
+          type: string
+          nullable: true
+        strImageAttribution:
+          type: string
+          nullable: true
+        strImageSource:
+          type: string
+          nullable: true
+        strInstructions:
+          type: string
+          example: 'Mix all ingredients in a punch bowl and serve.'
+        strInstructionsDE:
+          type: string
+          nullable: true
+        strInstructionsES:
+          type: string
+          nullable: true
+        strInstructionsFR:
+          type: string
+          nullable: true
+        strInstructionsIT:
+          type: string
+          example: 'Mescolare tutti gli ingredienti in una ciotola da punch e servire.'
+        strInstructionsZH-HANS:
+          type: string
+          nullable: true
+        strInstructionsZH-HANT:
+          type: string
+          nullable: true
+        strTags:
+          type: string
+          nullable: true
+        strVideo:
+          type: string
+          format: uri
+          nullable: true
+        ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              measure:
+                type: string
+      required:
+        - idDrink
+        - strDrink
+        - strAlcoholic
+        - strCategory
+        - strDrinkThumb
+        - strGlass
+        - strInstructions
+        - ingredients
+    Ingredient:
+      type: object
+      properties:
+        idDrink:
+          type: string
+          example: '15300'
+        strDrink:
+          type: string
+          example: '3-Mile Long Island Iced Tea'
+        strDrinkThumb:
+          type: string
+          format: uri
+          example: 'https://www.thecocktaildb.com/images/media/drink/rrtssw1472668972.jpg'
+      required:
+        - idDrink
+        - strDrink
+        - strDrinkThumb

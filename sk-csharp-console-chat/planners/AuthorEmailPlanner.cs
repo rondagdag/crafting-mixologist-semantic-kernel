@@ -7,7 +7,7 @@ namespace Planners;
 internal class AuthorEmailPlanner
 {
     [KernelFunction]
-    [Description("Returns back the required steps necessary to author an email.")]
+    [Description("Returns back the required steps necessary to author an email. Require to ask recipients valid email address")]
     [return: Description("The list of steps needed to author an email")]
     public async Task<string> GenerateRequiredStepsAsync(
         Kernel kernel,

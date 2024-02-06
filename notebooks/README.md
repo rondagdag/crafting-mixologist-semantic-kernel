@@ -48,16 +48,16 @@ see the previous section.
 
 For a quick dive, look at the [getting started notebook](00-getting-started.ipynb).
 
-1. [Loading and configuring Semantic Kernel](01-basic-loading-the-kernel.ipynb)
-2. [Running AI prompts from file](02-running-prompts-from-file.ipynb)
-3. [Creating Semantic Functions at runtime (i.e. inline functions)](03-semantic-function-inline.ipynb)
-4. [Using Kernel Arguments to Build a Chat Experience](04-kernel-arguments-chat.ipynb)
-5. [Creating and Executing Plans](05-using-the-planner.ipynb)
-6. [Building Memory with Embeddings](06-memory-and-embeddings.ipynb)
-7. [Creating images with DALL-E 3](07-DALL-E-3.ipynb)
-8. [Chatting with ChatGPT and Images](08-chatGPT-with-DALL-E-3.ipynb)
-9. [Building Semantic Memory with Chroma](09-memory-with-chroma.ipynb)
-10. [BingSearch using Kernel](10-BingSearch-using-kernel.ipynb)
+1. [Loading and configuring Semantic Kernel, Semantic Functions at runtime (i.e. inline functions)](01-semantic-function-inline.ipynb)
+2. [Running AI prompts from file](02-semantic-function-type.ipynb)
+3. [Using Kernel Arguments to Build a Chat Experience](03-kernel-chat.ipynb)
+4. [Creating images with DALL-E 3](04-DALL-E-3.ipynb)
+5. [Use GPT Vision Model](05-GPTVision.ipynb)
+6. [Introduction to the Planner](06-using-the-planner.ipynb)
+7. [Building Semantic Memory and Save the Embeddings](07-memory-and-save-embeddings.ipynb)
+8. [Load and Search Embeddings](08-memory-and-embeddings.ipynb)
+9. [First Copilot](09-first-copilot.ipynb)
+10. [Multi Agents](10-multi-agents.ipynb)
 
 # Run notebooks in the browser with JupyterLab
 
