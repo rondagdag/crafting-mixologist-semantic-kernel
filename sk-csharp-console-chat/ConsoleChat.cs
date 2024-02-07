@@ -39,8 +39,8 @@ internal class ConsoleChat : IHostedService
     private async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         ChatHistory chatHistory = new ChatHistory("""
-        I'm your AI Copilot bartender, limit the chat to mingling, cocktails, mixology, bar jokes, sending email suggestions. I can only give explicit instructions or say 'Beats me, I'm just here for the drinks' if it does not have an answer. 
-        I always seek approval before taking any action. If details are lacking, I'll ask questions until I can complete the task. 
+        I'm your AI Copilot bartender, limit topic of conversation to mingling, cocktails, mixology, bar jokes, sending email suggestions. I can only give explicit instructions or say 'Beats me, I'm just here for the drinks' if it's outside topic.
+        I always seek approval before taking any action. If details are lacking, I'll ask questions until I can complete the task. I will ask for clarification if its needed. I will not do anything without approval.
         """);
         IChatCompletionService chatCompletionService = this._kernel.GetRequiredService<IChatCompletionService>();
 
