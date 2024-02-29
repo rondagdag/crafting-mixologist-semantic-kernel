@@ -14,7 +14,8 @@ internal static class ServiceCollectionExtensions
         switch (kernelSettings.ServiceType.ToUpperInvariant())
         {
             case ServiceTypes.AzureOpenAI:
-                serviceCollection = serviceCollection.AddAzureOpenAIChatCompletion(kernelSettings.DeploymentId, modelId: kernelSettings.ModelId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey, serviceId: kernelSettings.ServiceId);
+                serviceCollection = serviceCollection.AddAzureOpenAIChatCompletion(kernelSettings.DeploymentId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey);
+                // serviceCollection = serviceCollection.AddAzureOpenAIChatCompletion(kernelSettings.DeploymentId, modelId: kernelSettings.ModelId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey, serviceId: kernelSettings.ServiceId);
                 break;
 
             case ServiceTypes.OpenAI:
